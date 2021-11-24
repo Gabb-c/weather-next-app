@@ -1,0 +1,20 @@
+{
+  "recommendations": [
+    "christian-kohler.path-intellisense",
+    "codezombiech.gitignore",
+    "davidanson.vscode-markdownlint",
+    "dbaeumer.vscode-eslint",
+    "eamodio.gitlens",
+    "ecmel.vscode-html-css",
+    "editorconfig.editorconfig",
+    "jpoissonnier.vscode-styled-components",
+    "mikestead.dotenv",
+    "ms-vscode.cpptools",
+    "ms-vscode.vscode-typescript-next",
+    "redhat.vscode-yaml",
+    "visualstudioexptteam.vscodeintellicode",
+    "xabikos.javascriptsnippets",
+    "zignd.html-css-class-completion",
+    "stylelint.vscode-stylelint"
+  ],
+}

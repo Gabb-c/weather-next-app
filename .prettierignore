@@ -1,0 +1,9 @@
+node_modules/
+.next/
+coverage/
+.cache/
+public/
+.github/
+.vscode/
+**/*.scss
+**/*.css
