@@ -7,7 +7,6 @@ import React, { useState } from 'react';
 import { CurrentWeatherInfo } from 'src/models/current-weather';
 import { getCurrentInfo } from '../services/weather.service';
 import { toast } from 'react-toastify';
-import { RingLoader } from 'react-spinners';
 
 const Home: NextPage = (): JSX.Element => {
   const [query, setQuery] = useState('');
