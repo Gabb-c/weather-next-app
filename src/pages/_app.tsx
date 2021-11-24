@@ -2,13 +2,11 @@ import 'react-toastify/dist/ReactToastify.css';
 import React from 'react';
 import { AppProps } from 'next/app';
 
-import { toast, ToastContainer } from 'react-toastify';
+import { ToastContainer } from 'react-toastify';
+
+import '../styles/globals.scss';
 
 function MyApp({ Component, pageProps }: AppProps): JSX.Element {
-  React.useEffect(() => {
-    toast.dark('Powered by Vercel');
-  }, []);
-
   return (
     <>
       <Component {...pageProps} />

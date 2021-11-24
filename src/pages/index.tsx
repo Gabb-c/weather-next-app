@@ -1,16 +1,64 @@
 import { NextPage } from 'next';
-import { useEffect } from 'react';
 
+import { format } from 'date-fns';
+
+import styles from '../styles/home.module.scss';
+import React, { useState } from 'react';
+import { CurrentWeatherInfo } from 'src/models/current-weather';
 import { getCurrentInfo } from '../services/weather.service';
+import { toast } from 'react-toastify';
+import { RingLoader } from 'react-spinners';
 
-const Home: NextPage = () => {
-  useEffect(() => {
-    getCurrentInfo('Texas')
-      .then((response) => console.log(response))
-      .catch((error) => console.error(error));
-  }, []);
+const Home: NextPage = (): JSX.Element => {
+  const [query, setQuery] = useState('');
+  const [weather, setWeather] = useState<CurrentWeatherInfo>({} as CurrentWeatherInfo);
 
-  return <></>;
+  const search = async (evt: React.KeyboardEvent) => {
+    if (evt.key === 'Enter') {
+      await getCurrentInfo(query)
+        .then((response) => {
+          setQuery('');
+          return setWeather(response);
+        })
+        .catch(() => {
+          setQuery('');
+          toast.dark('Sorry, I could not find this location ; - ;');
+        });
+    }
+  };
+
+  return (
+    <div className={styles['home-container-cold']}>
+      <main>
+        <div className={styles['search-container']}>
+          <input
+            type="text"
+            className={styles['search-bar']}
+            placeholder="Search..."
+            onChange={(e) => setQuery(e.target.value)}
+            value={query}
+            onKeyPress={search}
+          />
+        </div>
+        {weather.main ? (
+          <>
+            <div className={styles['location-box']}>
+              <div className={styles.location}>
+                {weather.name}, {weather.sys.country}
+              </div>
+              <div className={styles.date}>{format(new Date(), 'PPPP')}</div>
+            </div>
+            <div className={styles['weather-box']}>
+              <div className={styles.temp}>{Math.round(weather.main.temp)}°</div>
+              <div className={styles.weather}>{weather.weather[0].main}</div>
+            </div>
+          </>
+        ) : (
+          <></>
+        )}
+      </main>
+    </div>
+  );
 };
 
 export default Home;
