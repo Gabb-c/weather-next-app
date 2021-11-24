@@ -13,7 +13,7 @@ const Home: NextPage = (): JSX.Element => {
   const [weather, setWeather] = useState<CurrentWeatherInfo>({} as CurrentWeatherInfo);
 
   const search = async (evt: React.KeyboardEvent) => {
-    if (evt.key === 'Enter') {
+    if (evt.key === 'Enter' && query.length > 0) {
       await getCurrentInfo(query)
         .then((response) => {
           setQuery('');
@@ -27,7 +27,17 @@ const Home: NextPage = (): JSX.Element => {
   };
 
   return (
-    <div className={styles['home-container-cold']}>
+    /*eslint-disable unicorn/no-nested-ternary */
+    <div
+      className={
+        weather?.main
+          ? weather.main.temp > 16
+            ? styles['home-container-warm']
+            : styles['home-container-cold']
+          : styles['home-container-default']
+      }
+      /*eslint-enable unicorn/no-nested-ternary */
+    >
       <main>
         <div className={styles['search-container']}>
           <input

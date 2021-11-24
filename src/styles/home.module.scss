@@ -1,7 +1,7 @@
 %home-container {
   background-size: cover;
   background-position: bottom;
-  transition: 0.5 ease;
+  transition: 0.8s ease-out;
 
   main {
     min-height: 100vh;
@@ -13,19 +13,19 @@
 .home-container-default {
   @extend %home-container;
 
-  background-image: url("../assets/default.jpg");
+  background-image: url("/default.jpg");
 }
 
 .home-container-cold {
   @extend %home-container;
 
-  background-image: url("../assets/cold.jpg");
+  background-image: url("/cold.jpg");
 }
 
 .home-container-warm {
   @extend %home-container;
 
-  background-image: url("../assets/warm.jpeg");
+  background-image: url("/warm.jpeg");
 }
 
 .search-container {
